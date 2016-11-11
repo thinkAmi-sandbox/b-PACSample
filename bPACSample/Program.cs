@@ -47,8 +47,10 @@ namespace bPACSample
             doc.Printed += new bpac.IPrintEvents_PrintedEventHandler(HandlePrinted);
 
 
-            // 印刷設定開始：最後でカットする
-            doc.StartPrint("", bpac.PrintOptionConstants.bpoCutAtEnd);
+            // 印刷設定開始：最後でカットし、品質優先印刷を行う
+            // C#の場合、オプションを複数設定するには、"論理OR演算子" (|)を使う
+            // https://msdn.microsoft.com/ja-jp/library/6a71f45d.aspx
+            doc.StartPrint("", bpac.PrintOptionConstants.bpoCutAtEnd | PrintOptionConstants.bpoQuality);
 
             // ラベルの編集
             for (int i = 1; i < 3; i++)
